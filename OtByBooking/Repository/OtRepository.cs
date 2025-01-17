@@ -1,6 +1,7 @@
 ﻿using Microsoft.Data.SqlClient;
 using Microsoft.Extensions.Configuration;
 using OtByBooking.Models.DTOs;
+using OtByBooking.Models.Entities;
 using OtByBooking.Repository.Interfaces;
 
 namespace OtByBooking.Repository;
@@ -48,4 +49,31 @@ public class OtRepository(IConfiguration configuration) : IOtRepository
         }
         
     }
+    public List<OT> GetOTsByBookingCode(string booking)
+    {
+        List<OT> results = [];
+        string connectionString = _configuration.GetConnectionString("DefaultConnection") ?? throw new Exception("Key: \"DefaultConnection\" not found");
+        
+        using SqlConnection sqlConnection = new(connectionString);
+        using SqlCommand command = new("EXEC BuscarBooking @bk", sqlConnection);//sqlConnection.CreateCommand();
+        
+        SqlParameter parameter = new("@bk", System.Data.SqlDbType.VarChar)
+        {
+            Value = booking
+        };
+        command.Parameters.Add(parameter);
+        sqlConnection.Open();
+        SqlDataReader reader = command.ExecuteReader();
+        while (reader.Read())
+        {
+            OT oT = new()
+            {
+                Description = reader.GetValue(0).ToString() ?? string.Empty
+            };
+            results.Add(oT);
+        }
+        sqlConnection.Close();
+        return results;
+    }
+
 }

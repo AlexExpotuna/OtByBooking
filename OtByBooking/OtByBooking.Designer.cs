@@ -104,7 +104,7 @@
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(399, 180);
+            ClientSize = new Size(393, 180);
             Controls.Add(buttonCopy);
             Controls.Add(message);
             Controls.Add(otTextField);

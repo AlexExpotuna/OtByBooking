@@ -2,6 +2,7 @@
 
 public class MessageInfoDTO
 {
+    public bool Success { get; set; } = false;
     public object? Result { get; set; }
     public string Message { get; set; } = string.Empty;
 }

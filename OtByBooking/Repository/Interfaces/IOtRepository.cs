@@ -1,8 +1,9 @@
 ﻿using OtByBooking.Models.DTOs;
+using OtByBooking.Models.Entities;
 
 namespace OtByBooking.Repository.Interfaces;
 
 public interface IOtRepository
 {
-    MessageInfoDTO<string> GetOTByBookingCode(string booking);
+    List<OT> GetOTsByBookingCode(string booking);
 }
