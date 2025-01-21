@@ -68,7 +68,7 @@ public class OtRepository(IConfiguration configuration) : IOtRepository
         {
             OT oT = new()
             {
-                Description = reader.GetValue(0).ToString() ?? string.Empty
+                Code = reader.GetValue(0).ToString() ?? string.Empty
             };
             results.Add(oT);
         }

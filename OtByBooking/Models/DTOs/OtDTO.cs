@@ -7,6 +7,6 @@ public class OtDTO
     public string Description { get; set; } = string.Empty;
     public void SetToDto(OT oT)
     {
-        Description = oT.Description;
+        Description = oT.Code;
     }
 }

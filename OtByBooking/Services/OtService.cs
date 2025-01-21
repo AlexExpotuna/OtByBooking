@@ -20,7 +20,7 @@ public class OtService(IOtRepository otRepository) : IOtService
             }
             foreach (OT ot in otList)
             {
-                result += ot.Description + (otList.Count > 1 ? Environment.NewLine : string.Empty);
+                result += ot.Code + (otList.Count > 1 ? Environment.NewLine : string.Empty);
             }
             messageInfoDTO.Success = true;
             messageInfoDTO.Result = result;

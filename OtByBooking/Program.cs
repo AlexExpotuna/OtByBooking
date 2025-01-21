@@ -17,7 +17,6 @@ internal static class Program
     {
         // To customize application configuration such as set high DPI settings or default font,
         // see https://aka.ms/applicationconfiguration.
-
         ApplicationConfiguration.Initialize();
         var builder = new ConfigurationBuilder()
             .SetBasePath(Directory.GetCurrentDirectory())
@@ -25,8 +24,8 @@ internal static class Program
         IConfiguration _configuration = builder.Build();
         IClipboardService _clipboardService = new ClipboardService();
         IOtRepository _repository =
-            //new OtTestRepository(); // test
-            new OtRepository(_configuration); // Production
+            new OtTestRepository(); // test
+            //new OtRepository(_configuration); // Production
         IOtService _otService = new OtService(_repository);
 
         Application.Run(new OtByBooking(_otService, _clipboardService));

@@ -2,5 +2,7 @@
 
 public class OT
 {
-    public string Description { get; set; } = string.Empty;
+    public string Code { get; set; } = string.Empty;
+    public string State {  get; set; } = string.Empty;
+    public List<OtDetail> Details { get; set; } = [];
 }
