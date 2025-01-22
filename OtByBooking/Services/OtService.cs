@@ -18,6 +18,11 @@ public class OtService(IOtRepository otRepository) : IOtService
                     Message = "No se encontraron detalles"
                 };
             }
+            else
+            {
+                messageInfoDTO.Success = true;
+                messageInfoDTO.Result = string.Join(Environment.NewLine, details.Select(dt => $"Factura: {dt.InvoiceNumber} Monto: {dt.Amount}"));
+            }
             return messageInfoDTO;
         }
         catch(Exception ex)
@@ -26,7 +31,6 @@ public class OtService(IOtRepository otRepository) : IOtService
             return messageInfoDTO;
         }
     }
-
     public MessageInfoDTO<string> GetOtsByBookingCode(string booking)
     {
         MessageInfoDTO<string> messageInfoDTO = new();
@@ -75,6 +79,10 @@ public class OtService(IOtRepository otRepository) : IOtService
                     new DataGridViewTextBoxCell(){
                         Value = ot.State
                     },
+                    new DataGridViewButtonCell()
+                    {
+                        Value = "Click",
+                    }
                 ]);
                 results.Add(row);
             }
@@ -88,33 +96,4 @@ public class OtService(IOtRepository otRepository) : IOtService
             return messageInfoDTO;
         }
     }
-    //public MessageInfoDTO<DataRowCollection> GetOtsByBookingCodeV2(string booking)
-    //{
-    //    MessageInfoDTO<DataRowCollection> messageInfoDTO = new();
-    //    try
-    //    {
-    //        List<DataRow> result = [];
-    //        List<OT> otList = _repository.GetOTsByBookingCode(booking);
-    //        if (otList.Count <= 0)
-    //        {
-    //            messageInfoDTO.Message = "No hay OTs registradas";
-    //            return messageInfoDTO;
-    //        }
-    //        foreach (OT ot in otList)
-    //        {
-    //            result.Rows.Add(
-    //            [
-    //                ot.Code, ot.State, string.Empty
-    //            ]);
-    //        }
-    //        messageInfoDTO.Success = true;
-    //        messageInfoDTO.Result = result.Rows;
-    //        return messageInfoDTO;
-    //    }
-    //    catch (Exception ex)
-    //    {
-    //        messageInfoDTO.Message = ex.Message;
-    //        return messageInfoDTO;
-    //    }
-    //}
 }

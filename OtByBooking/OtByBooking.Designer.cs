@@ -89,7 +89,7 @@
             otDataGridView.ReadOnly = true;
             otDataGridView.Size = new Size(376, 150);
             otDataGridView.TabIndex = 7;
-            otDataGridView.CellContentClick += otDataGridView_CellContentClick;
+            otDataGridView.CellClick += otDataGridView_CellContentClick;
             // 
             // OtCell
             // 
@@ -111,10 +111,10 @@
             // 
             Details.AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCells;
             Details.Frozen = true;
-            Details.HeaderText = "Acciones";
+            Details.HeaderText = "Ver detalles";
             Details.Name = "Details";
             Details.ReadOnly = true;
-            Details.Width = 61;
+            Details.Width = 72;
             // 
             // OtByBooking
             // 
@@ -130,7 +130,6 @@
             Controls.Add(button1);
             Name = "OtByBooking";
             Text = "OT By Booking";
-            Load += Form1_Load;
             ((System.ComponentModel.ISupportInitialize)otDataGridView).EndInit();
             ResumeLayout(false);
             PerformLayout();

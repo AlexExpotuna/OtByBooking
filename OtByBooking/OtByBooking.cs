@@ -12,26 +12,13 @@ public partial class OtByBooking : Form
         _repository = repository;
         //_clipboardService = clipboardService;
     }
-
-    private void Form1_Load(object sender, EventArgs e)
-    {
-    }
     private void searchOT_Click(object sender, EventArgs e)
     {
         button1.Enabled = false;
         button1.Focus();
         var newOts = _repository.GetOtsByBookingCodeV2(bookingTextField.Text.Trim());
-
         if (newOts.Success)
         {
-            for (int i = 0; i < newOts.Result!.Count; i++)
-            {
-                var currentRow = newOts.Result[i];
-                currentRow.Cells.Add(new DataGridViewButtonCell()
-                {
-                    Value = null
-                });
-            }
             otDataGridView.Rows.AddRange([.. newOts.Result!]);
             otDataGridView.Refresh();
         }
@@ -42,11 +29,21 @@ public partial class OtByBooking : Form
         button1.Enabled = true;
         bookingTextField.Focus();
     }
-
     private void otDataGridView_CellContentClick(object sender, DataGridViewCellEventArgs e)
     {
-        var a = e;
-        var i = sender.GetType();
-        MessageBox.Show("Hola papu");
+        if(e.RowIndex > -1 && e.ColumnIndex == 2)
+        {
+            var otCode = otDataGridView.Rows[e.RowIndex].Cells[0];
+            var otDetails = _repository.GetDetailsByOtCode(otCode.Value.ToString()!);
+            if (otDetails.Success)
+            {
+                MessageBox.Show(otDetails.Result!);
+            }
+            else
+            {
+                MessageBox.Show(otDetails.Message);
+            }
+            bookingTextField.Focus();
+        }
     }
 }
