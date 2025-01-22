@@ -32,9 +32,11 @@
             label1 = new Label();
             bookingTextField = new TextBox();
             label2 = new Label();
-            otTextField = new Label();
-            message = new Label();
-            buttonCopy = new Button();
+            otDataGridView = new DataGridView();
+            OtCell = new DataGridViewTextBoxColumn();
+            StateColumn = new DataGridViewTextBoxColumn();
+            Details = new DataGridViewButtonColumn();
+            ((System.ComponentModel.ISupportInitialize)otDataGridView).BeginInit();
             SuspendLayout();
             // 
             // button1
@@ -72,42 +74,56 @@
             label2.TabIndex = 3;
             label2.Text = "Orden de trabajo";
             // 
-            // otTextField
+            // otDataGridView
             // 
-            otTextField.AutoSize = true;
-            otTextField.Location = new Point(146, 81);
-            otTextField.Name = "otTextField";
-            otTextField.Size = new Size(24, 15);
-            otTextField.TabIndex = 4;
-            otTextField.Text = "NA";
+            otDataGridView.AllowUserToAddRows = false;
+            otDataGridView.AllowUserToDeleteRows = false;
+            otDataGridView.AllowUserToOrderColumns = true;
+            otDataGridView.AllowUserToResizeRows = false;
+            otDataGridView.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
+            otDataGridView.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
+            otDataGridView.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            otDataGridView.Columns.AddRange(new DataGridViewColumn[] { OtCell, StateColumn, Details });
+            otDataGridView.Location = new Point(12, 116);
+            otDataGridView.Name = "otDataGridView";
+            otDataGridView.ReadOnly = true;
+            otDataGridView.Size = new Size(376, 150);
+            otDataGridView.TabIndex = 7;
+            otDataGridView.CellContentClick += otDataGridView_CellContentClick;
             // 
-            // message
+            // OtCell
             // 
-            message.AutoSize = true;
-            message.Location = new Point(12, 141);
-            message.Name = "message";
-            message.Size = new Size(24, 15);
-            message.TabIndex = 5;
-            message.Text = "NA";
+            OtCell.Frozen = true;
+            OtCell.HeaderText = "OT";
+            OtCell.Name = "OtCell";
+            OtCell.ReadOnly = true;
+            OtCell.Width = 46;
             // 
-            // buttonCopy
+            // StateColumn
             // 
-            buttonCopy.Location = new Point(312, 83);
-            buttonCopy.Name = "buttonCopy";
-            buttonCopy.Size = new Size(75, 23);
-            buttonCopy.TabIndex = 6;
-            buttonCopy.Text = "Copiar";
-            buttonCopy.UseVisualStyleBackColor = true;
-            buttonCopy.Click += buttonCopy_Click;
+            StateColumn.Frozen = true;
+            StateColumn.HeaderText = "Estado";
+            StateColumn.Name = "StateColumn";
+            StateColumn.ReadOnly = true;
+            StateColumn.Width = 67;
+            // 
+            // Details
+            // 
+            Details.AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCells;
+            Details.Frozen = true;
+            Details.HeaderText = "Acciones";
+            Details.Name = "Details";
+            Details.ReadOnly = true;
+            Details.Width = 61;
             // 
             // OtByBooking
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(393, 180);
-            Controls.Add(buttonCopy);
-            Controls.Add(message);
-            Controls.Add(otTextField);
+            AutoScroll = true;
+            BackgroundImageLayout = ImageLayout.Zoom;
+            ClientSize = new Size(400, 478);
+            Controls.Add(otDataGridView);
             Controls.Add(label2);
             Controls.Add(bookingTextField);
             Controls.Add(label1);
@@ -115,6 +131,7 @@
             Name = "OtByBooking";
             Text = "OT By Booking";
             Load += Form1_Load;
+            ((System.ComponentModel.ISupportInitialize)otDataGridView).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -125,8 +142,9 @@
         private Label label1;
         private TextBox bookingTextField;
         private Label label2;
-        private Label otTextField;
-        private Label message;
-        private Button buttonCopy;
+        private DataGridView otDataGridView;
+        private DataGridViewTextBoxColumn OtCell;
+        private DataGridViewTextBoxColumn StateColumn;
+        private DataGridViewButtonColumn Details;
     }
 }

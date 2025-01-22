@@ -49,6 +49,12 @@ public class OtRepository(IConfiguration configuration) : IOtRepository
         }
         
     }
+
+    public List<OtDetail> GetOtDetails(string code)
+    {
+        throw new NotImplementedException();
+    }
+
     public List<OT> GetOTsByBookingCode(string booking)
     {
         List<OT> results = [];
