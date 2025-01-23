@@ -2,7 +2,6 @@
 using Microsoft.Extensions.Configuration;
 using OtByBooking.Models.Entities;
 using OtByBooking.Repository.Interfaces;
-
 namespace OtByBooking.Repository;
 
 public class OtRepository : IOtRepository
