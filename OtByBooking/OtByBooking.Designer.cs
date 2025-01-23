@@ -128,7 +128,7 @@
             AutoScaleMode = AutoScaleMode.Font;
             AutoScroll = true;
             BackgroundImageLayout = ImageLayout.Zoom;
-            ClientSize = new Size(400, 478);
+            ClientSize = new Size(400, 327);
             Controls.Add(otDataGridView);
             Controls.Add(label2);
             Controls.Add(bookingTextField);

@@ -1,5 +1,4 @@
 ﻿using OtByBooking.Models.DTOs;
-using OtByBooking.Models.Entities;
 using OtByBooking.Repository.Interfaces;
 using OtByBooking.Services.Interfaces;
 namespace OtByBooking.Services;
