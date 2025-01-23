@@ -2,11 +2,10 @@
 
 namespace OtByBooking.Services.Interfaces;
 
-public interface IViewBuilder<TResult, TModel> 
-    //where TResult : class
-    //where TModel : class
+public interface IViewBuilder<TResult, TDto>
+    where TDto : IDto
 {
-    List<TModel> GetModels();
-    List<TResult> Build(List<TModel> model);
+    List<TDto> GetModels();
+    List<TResult> Build(List<TDto> model);
     void AddRepository(IOtRepository repository);
 }
