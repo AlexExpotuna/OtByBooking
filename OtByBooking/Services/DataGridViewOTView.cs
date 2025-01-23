@@ -28,6 +28,9 @@ public class DataGridViewOTView(
                     new DataGridViewTextBoxCell(){
                         Value = ot.State
                     },
+                    new DataGridViewTextBoxCell(){
+                        Value = ot.Provider
+                    },
                     new DataGridViewButtonCell()
                     {
                         Value = "Click",

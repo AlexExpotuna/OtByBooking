@@ -35,7 +35,7 @@ public partial class OtByBooking : Form
     }
     private void otDataGridView_CellContentClick(object sender, DataGridViewCellEventArgs e)
     {
-        if(e.RowIndex > -1 && e.ColumnIndex == 2)
+        if(e.RowIndex > -1 && e.ColumnIndex == 3)
         {
             var otCode = otDataGridView.Rows[e.RowIndex].Cells[0];
             var otDetails = _service.GetDetailsByOtCode(otCode.Value.ToString()!);

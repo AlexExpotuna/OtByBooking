@@ -35,6 +35,7 @@
             otDataGridView = new DataGridView();
             OtCell = new DataGridViewTextBoxColumn();
             StateColumn = new DataGridViewTextBoxColumn();
+            Proveedor = new DataGridViewTextBoxColumn();
             Details = new DataGridViewButtonColumn();
             ((System.ComponentModel.ISupportInitialize)otDataGridView).BeginInit();
             SuspendLayout();
@@ -83,7 +84,7 @@
             otDataGridView.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
             otDataGridView.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells;
             otDataGridView.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            otDataGridView.Columns.AddRange(new DataGridViewColumn[] { OtCell, StateColumn, Details });
+            otDataGridView.Columns.AddRange(new DataGridViewColumn[] { OtCell, StateColumn, Proveedor, Details });
             otDataGridView.Location = new Point(12, 116);
             otDataGridView.Name = "otDataGridView";
             otDataGridView.ReadOnly = true;
@@ -105,6 +106,13 @@
             StateColumn.HeaderText = "Estado";
             StateColumn.Name = "StateColumn";
             StateColumn.ReadOnly = true;
+            // 
+            // Proveedor
+            // 
+            Proveedor.HeaderText = "Provider";
+            Proveedor.Name = "Proveedor";
+            Proveedor.ReadOnly = true;
+            Proveedor.Width = 76;
             // 
             // Details
             // 
@@ -142,6 +150,7 @@
         private DataGridView otDataGridView;
         private DataGridViewTextBoxColumn OtCell;
         private DataGridViewTextBoxColumn StateColumn;
+        private DataGridViewTextBoxColumn Proveedor;
         private DataGridViewButtonColumn Details;
     }
 }

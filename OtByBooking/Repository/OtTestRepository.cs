@@ -29,11 +29,12 @@ public class OtTestRepository : IOtRepository
             new OT(){
                 Code = "OT-759684",
                 State = "APROBADO",
-                
+                Provider = "PROVEEDOR A"
             },
             new OT(){
                 Code = "OT-824556",
                 State = "POR APROBAR",
+                Provider = "PROVEEDOR B"
             }
         ];
     }
