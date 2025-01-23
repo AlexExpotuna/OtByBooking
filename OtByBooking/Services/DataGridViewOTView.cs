@@ -44,6 +44,7 @@ public class DataGridViewOTView(
         {
             Code = x.Code,
             State = x.State,
+            Provider = x.Provider
         }).ToList() ?? throw new Exception("View must have repository");
     }
 }

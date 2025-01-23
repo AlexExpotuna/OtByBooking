@@ -18,7 +18,7 @@ public class OtRepository : IOtRepository
         List<OtDetail> results = [];
         const string TYPE_DOCUMENT = "ORDEN TRABAJO";
         using SqlConnection sqlConnection = new(ConnectionString);
-        using SqlCommand command = new("select _ENABLEFACTURA, _VALORTOTALFACTFAC from vst_orden_presupuesto_cont_report_ex where _TIPODOCUMENT = @typeDocument AND NORDEN = @otCode", sqlConnection);
+        using SqlCommand command = new("select _ITEMDOCUMENTO, _COSTONETO from vst_orden_presupuesto_cont_report_ex where _TIPODOCUMENT = @typeDocument AND NORDEN = @otCode", sqlConnection);
         SqlParameter parameter = new("@typeDocument", System.Data.SqlDbType.VarChar)
         {
             Value = TYPE_DOCUMENT
@@ -60,6 +60,7 @@ public class OtRepository : IOtRepository
             {
                 Code = reader.GetValue(0).ToString() ?? string.Empty,
                 State = reader.GetValue(1).ToString() ?? string.Empty,
+                Provider = reader.GetValue(2).ToString() ?? string.Empty
             };
             results.Add(oT);
         }
