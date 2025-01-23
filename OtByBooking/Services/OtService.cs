@@ -72,14 +72,14 @@ public class OtService(IOtRepository otRepository) : IOtService
     }
 
     //IViewBuilder<List<DataGridViewRow>, List<OT>>
-    public MessageInfoDTO<List<TResult>> GetOtsByBookingCodeV3<TResult>(IViewBuilder<TResult, OT> viewBuilder)
+    public MessageInfoDTO<List<TResult>> GetOtsByBookingCodeV3<TResult>(IViewBuilder<TResult, OtDTO> viewBuilder)
     {
         MessageInfoDTO<List<TResult>> messageInfoDTO = new();
         try
         {
             viewBuilder.AddRepository(_repository);
             List<TResult> results = [];
-            List<OT> otList = viewBuilder.GetModels();
+            List<OtDTO> otList = viewBuilder.GetModels();
             if (otList.Count <= 0)
             {
                 messageInfoDTO.Message = "No hay OTs registradas";

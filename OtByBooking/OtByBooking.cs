@@ -1,3 +1,4 @@
+using OtByBooking.Models.DTOs;
 using OtByBooking.Models.Entities;
 using OtByBooking.Services;
 using OtByBooking.Services.Interfaces;
@@ -18,8 +19,7 @@ public partial class OtByBooking : Form
     {
         button1.Enabled = false;
         button1.Focus();
-        //var newOts = _service.GetOtsByBookingCodeV2(bookingTextField.Text.Trim());
-        IViewBuilder<DataGridViewRow, OT> windowsForm = new DataGridViewOTView(bookingTextField.Text.Trim());
+        IViewBuilder<DataGridViewRow, OtDTO> windowsForm = new DataGridViewOTView(bookingTextField.Text.Trim());
         var newOts = _service.GetOtsByBookingCodeV3(windowsForm);
         if (newOts.Success)
         {
@@ -38,7 +38,6 @@ public partial class OtByBooking : Form
         if(e.RowIndex > -1 && e.ColumnIndex == 2)
         {
             var otCode = otDataGridView.Rows[e.RowIndex].Cells[0];
-            
             var otDetails = _service.GetDetailsByOtCode(otCode.Value.ToString()!);
             if (otDetails.Success)
             {

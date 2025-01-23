@@ -3,7 +3,7 @@
 namespace OtByBooking.Services.Interfaces;
 
 public interface IViewBuilder<TResult, TDto>
-    where TDto : IDto
+    //where TDto : IDto
 {
     List<TDto> GetModels();
     List<TResult> Build(List<TDto> model);
