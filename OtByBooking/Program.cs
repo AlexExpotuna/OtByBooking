@@ -24,8 +24,8 @@ internal static class Program
         IConfiguration _configuration = builder.Build();
         //IClipboardService _clipboardService = new ClipboardService();
         IOtRepository _repository =
-            new OtTestRepository(); // test
-            //new OtRepository(_configuration); // Production
+            //new OtTestRepository(); // test
+            new OtRepository(_configuration); // Production
         IOtService _otService = new OtService(_repository);
 
         Application.Run(new OtByBooking(_otService));

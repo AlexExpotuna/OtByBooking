@@ -52,17 +52,38 @@ public class OtRepository(IConfiguration configuration) : IOtRepository
 
     public List<OtDetail> GetOtDetails(string code)
     {
-        throw new NotImplementedException();
+        List<OtDetail> results = [];
+        const string TYPE_DOCUMENT = "ORDEN TRABAJO";
+        string connectionString = _configuration.GetConnectionString("DefaultConnection") ?? throw new Exception("Key: \"DefaultConnection\" not found");
+        using SqlConnection sqlConnection = new(connectionString);
+        using SqlCommand command = new("select _ENABLEFACTURA, _VALORTOTALFACTFAC from vst_orden_presupuesto_cont_report_ex where _TIPODOCUMENT = @typeDocument AND NORDEN = @otCode", sqlConnection);//sqlConnection.CreateCommand();
+        SqlParameter parameter = new("@typeDocument", System.Data.SqlDbType.VarChar)
+        {
+            Value = TYPE_DOCUMENT
+        };
+        SqlParameter parameter2 = new("@otCode", System.Data.SqlDbType.VarChar)
+        {
+            Value = code
+        };
+        command.Parameters.AddRange([parameter, parameter2]);
+        sqlConnection.Open();
+        SqlDataReader reader = command.ExecuteReader();
+        while (reader.Read()) 
+        {
+            results.Add(new OtDetail()
+            {
+                InvoiceNumber = reader.GetValue(0).ToString() ?? string.Empty,
+                Amount = reader.GetValue(1).ToString() ?? "0",
+            });
+        }
+        return results;
     }
-
     public List<OT> GetOTsByBookingCode(string booking)
     {
         List<OT> results = [];
         string connectionString = _configuration.GetConnectionString("DefaultConnection") ?? throw new Exception("Key: \"DefaultConnection\" not found");
-        
         using SqlConnection sqlConnection = new(connectionString);
         using SqlCommand command = new("EXEC BuscarBooking @bk", sqlConnection);//sqlConnection.CreateCommand();
-        
         SqlParameter parameter = new("@bk", System.Data.SqlDbType.VarChar)
         {
             Value = booking
@@ -74,11 +95,13 @@ public class OtRepository(IConfiguration configuration) : IOtRepository
         {
             OT oT = new()
             {
-                Code = reader.GetValue(0).ToString() ?? string.Empty
+                Code = reader.GetValue(0).ToString() ?? string.Empty,
+                State = reader.GetValue(1).ToString() ?? string.Empty,
             };
             results.Add(oT);
         }
         sqlConnection.Close();
+        sqlConnection.Dispose();
         return results;
     }
 

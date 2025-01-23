@@ -31,32 +31,6 @@ public class OtService(IOtRepository otRepository) : IOtService
             return messageInfoDTO;
         }
     }
-    public MessageInfoDTO<string> GetOtsByBookingCode(string booking)
-    {
-        MessageInfoDTO<string> messageInfoDTO = new();
-        try
-        {
-            string result = string.Empty;
-            List<OT> otList = _repository.GetOTsByBookingCode(booking);
-            if(otList.Count <= 0)
-            {
-                messageInfoDTO.Message = "No hay OTs registradas";
-                return messageInfoDTO;
-            }
-            foreach (OT ot in otList)
-            {
-                result += ot.GetOTHeaderResult(otList.Count);
-            }
-            messageInfoDTO.Success = true;
-            messageInfoDTO.Result = result;
-            return messageInfoDTO;
-        }
-        catch(Exception ex) {
-            messageInfoDTO.Message = ex.Message;
-            return messageInfoDTO;
-        }
-    }
-
     public MessageInfoDTO<List<DataGridViewRow>> GetOtsByBookingCodeV2(string booking)
     {
         MessageInfoDTO<List<DataGridViewRow>> messageInfoDTO = new();

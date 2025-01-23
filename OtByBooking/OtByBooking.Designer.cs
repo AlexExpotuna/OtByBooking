@@ -82,6 +82,7 @@
             otDataGridView.AllowUserToResizeRows = false;
             otDataGridView.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
             otDataGridView.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
+            otDataGridView.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells;
             otDataGridView.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             otDataGridView.Columns.AddRange(new DataGridViewColumn[] { OtCell, StateColumn, Details });
             otDataGridView.Location = new Point(12, 116);

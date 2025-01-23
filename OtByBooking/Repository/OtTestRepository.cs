@@ -10,15 +10,15 @@ public class OtTestRepository : IOtRepository
         return [
             new OtDetail(){
                     InvoiceNumber = "001-001-00000001",
-                    Amount = 7500
+                    Amount = "7500"
                 },
             new OtDetail(){
                     InvoiceNumber = "001-002-00000001",
-                    Amount = 100000
+                    Amount = "100000"
                 },
             new OtDetail(){
                     InvoiceNumber = "001-002-00000002",
-                    Amount = 50000
+                    Amount = "50000"
                 }
         ];
     }
@@ -29,26 +29,11 @@ public class OtTestRepository : IOtRepository
             new OT(){
                 Code = "OT-759684",
                 State = "APROBADO",
-                Details = [
-                    new OtDetail(){
-                        InvoiceNumber = "001-001-00000001",
-                        Amount = 7500
-                    }
-                ]
+                
             },
             new OT(){
                 Code = "OT-824556",
                 State = "POR APROBAR",
-                Details = [
-                    new OtDetail(){
-                        InvoiceNumber = "001-002-00000001",
-                        Amount = 100000
-                    },
-                    new OtDetail(){
-                        InvoiceNumber = "001-002-00000002",
-                        Amount = 50000
-                    }
-                ]
             }
         ];
     }
