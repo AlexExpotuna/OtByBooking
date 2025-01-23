@@ -80,7 +80,6 @@
             otDataGridView.AllowUserToDeleteRows = false;
             otDataGridView.AllowUserToOrderColumns = true;
             otDataGridView.AllowUserToResizeRows = false;
-            otDataGridView.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
             otDataGridView.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
             otDataGridView.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells;
             otDataGridView.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
@@ -102,16 +101,14 @@
             // 
             // StateColumn
             // 
-            StateColumn.Frozen = true;
+            StateColumn.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
             StateColumn.HeaderText = "Estado";
             StateColumn.Name = "StateColumn";
             StateColumn.ReadOnly = true;
-            StateColumn.Width = 67;
             // 
             // Details
             // 
             Details.AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCells;
-            Details.Frozen = true;
             Details.HeaderText = "Ver detalles";
             Details.Name = "Details";
             Details.ReadOnly = true;

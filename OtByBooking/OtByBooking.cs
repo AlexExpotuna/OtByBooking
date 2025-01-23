@@ -8,6 +8,7 @@ public partial class OtByBooking : Form
     public OtByBooking(IOtService service)
     {
         InitializeComponent();
+
         _service = service;
         //_clipboardService = clipboardService;
     }
