@@ -1,5 +1,4 @@
 using OtByBooking.Models.DTOs;
-using OtByBooking.Models.Entities;
 using OtByBooking.Services;
 using OtByBooking.Services.Interfaces;
 namespace OtByBooking;
@@ -15,7 +14,7 @@ public partial class OtByBooking : Form
         _service = service;
         //_clipboardService = clipboardService;
     }
-    private void searchOT_Click(object sender, EventArgs e)
+    private void SearchBooking()
     {
         button1.Enabled = false;
         button1.Focus();
@@ -33,9 +32,14 @@ public partial class OtByBooking : Form
         button1.Enabled = true;
         bookingTextField.Focus();
     }
+
+    private void searchOT_Click(object sender, EventArgs e)
+    {
+        SearchBooking();
+    }
     private void otDataGridView_CellContentClick(object sender, DataGridViewCellEventArgs e)
     {
-        if(e.RowIndex > -1 && e.ColumnIndex == 3)
+        if (e.RowIndex > -1 && e.ColumnIndex == 3)
         {
             var otCode = otDataGridView.Rows[e.RowIndex].Cells[0];
             var otDetails = _service.GetDetailsByOtCode(otCode.Value.ToString()!);
@@ -48,6 +52,14 @@ public partial class OtByBooking : Form
                 MessageBox.Show(otDetails.Message);
             }
             bookingTextField.Focus();
+        }
+    }
+
+    private void bookingTextField_KeyDown(object sender, KeyEventArgs e)
+    {
+        if (e.KeyCode == Keys.Enter)
+        {
+            SearchBooking();
         }
     }
 }

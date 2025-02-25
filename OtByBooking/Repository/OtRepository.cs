@@ -16,28 +16,26 @@ public class OtRepository : IOtRepository
     public List<OtDetail> GetOtDetails(string code)
     {
         List<OtDetail> results = [];
-        const string TYPE_DOCUMENT = "ORDEN TRABAJO";
         using SqlConnection sqlConnection = new(ConnectionString);
-        using SqlCommand command = new("select _ITEMDOCUMENTO, _COSTONETO from vst_orden_presupuesto_cont_report_ex where _TIPODOCUMENT = @typeDocument AND NORDEN = @otCode", sqlConnection);
-        SqlParameter parameter = new("@typeDocument", System.Data.SqlDbType.VarChar)
-        {
-            Value = TYPE_DOCUMENT
-        };
+        using SqlCommand command = new("select _ITEMDOCUMENTO, _COSTONETO, _RECIBIDA from vst_ot_details where NORDEN = @otCode", sqlConnection);
         SqlParameter parameter2 = new("@otCode", System.Data.SqlDbType.VarChar)
         {
             Value = code
         };
-        command.Parameters.AddRange([parameter, parameter2]);
+        command.Parameters.Add(parameter2);
         sqlConnection.Open();
         SqlDataReader reader = command.ExecuteReader();
         while (reader.Read()) 
         {
+            string enableFactura = reader.GetValue(2).ToString()!;
             results.Add(new OtDetail()
             {
-                InvoiceNumber = reader.GetValue(0).ToString() ?? string.Empty,
+                Description = reader.GetValue(0).ToString() ?? string.Empty,
                 Amount = reader.GetValue(1).ToString() ?? "0",
+                IsPending = reader.GetValue(2).ToString(),
             });
         }
+        reader.Close();
         sqlConnection.Close();
         sqlConnection.Dispose();
         return results;
@@ -64,6 +62,7 @@ public class OtRepository : IOtRepository
             };
             results.Add(oT);
         }
+        reader.Close();
         sqlConnection.Close();
         sqlConnection.Dispose();
         return results;

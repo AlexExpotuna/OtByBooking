@@ -20,7 +20,7 @@ public class OtService(IOtRepository otRepository) : IOtService
             else
             {
                 messageInfoDTO.Success = true;
-                messageInfoDTO.Result = string.Join(Environment.NewLine, details.Select(dt => $"Factura: {dt.InvoiceNumber} Monto: {dt.Amount}"));
+                messageInfoDTO.Result = string.Join(Environment.NewLine, details.Select(dt => $"Descripcion: {dt.Description} | Recibida: {dt.IsPending} | Costo: {dt.Amount} "));
             }
             return messageInfoDTO;
         }

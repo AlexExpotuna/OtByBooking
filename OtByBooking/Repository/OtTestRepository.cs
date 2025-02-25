@@ -9,15 +9,15 @@ public class OtTestRepository : IOtRepository
     {
         return [
             new OtDetail(){
-                    InvoiceNumber = "001-001-00000001",
+                    Description = "001-001-00000001",
                     Amount = "7500"
                 },
             new OtDetail(){
-                    InvoiceNumber = "001-002-00000001",
+                    Description = "001-002-00000001",
                     Amount = "100000"
                 },
             new OtDetail(){
-                    InvoiceNumber = "001-002-00000002",
+                    Description = "001-002-00000002",
                     Amount = "50000"
                 }
         ];

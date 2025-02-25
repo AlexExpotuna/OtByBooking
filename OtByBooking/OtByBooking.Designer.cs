@@ -42,7 +42,7 @@
             // 
             // button1
             // 
-            button1.Location = new Point(311, 25);
+            button1.Location = new Point(550, 29);
             button1.Name = "button1";
             button1.Size = new Size(75, 23);
             button1.TabIndex = 0;
@@ -61,10 +61,11 @@
             // 
             // bookingTextField
             // 
-            bookingTextField.Location = new Point(143, 25);
+            bookingTextField.Location = new Point(112, 29);
             bookingTextField.Name = "bookingTextField";
-            bookingTextField.Size = new Size(143, 23);
+            bookingTextField.Size = new Size(416, 23);
             bookingTextField.TabIndex = 2;
+            bookingTextField.KeyDown += bookingTextField_KeyDown;
             // 
             // label2
             // 
@@ -88,7 +89,7 @@
             otDataGridView.Location = new Point(12, 116);
             otDataGridView.Name = "otDataGridView";
             otDataGridView.ReadOnly = true;
-            otDataGridView.Size = new Size(376, 150);
+            otDataGridView.Size = new Size(613, 150);
             otDataGridView.TabIndex = 7;
             otDataGridView.CellClick += otDataGridView_CellContentClick;
             // 
@@ -128,7 +129,7 @@
             AutoScaleMode = AutoScaleMode.Font;
             AutoScroll = true;
             BackgroundImageLayout = ImageLayout.Zoom;
-            ClientSize = new Size(400, 327);
+            ClientSize = new Size(637, 327);
             Controls.Add(otDataGridView);
             Controls.Add(label2);
             Controls.Add(bookingTextField);
