@@ -20,6 +20,7 @@ public partial class OtByBooking : Form
         button1.Focus();
         IViewBuilder<DataGridViewRow, OtDTO> windowsForm = new DataGridViewOTView(bookingTextField.Text.Trim());
         var newOts = _service.GetOtsByBookingCodeV3(windowsForm);
+        otDataGridView.Rows.Clear();
         if (newOts.Success)
         {
             otDataGridView.Rows.AddRange([.. newOts.Result!]);
